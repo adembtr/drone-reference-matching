@@ -1,0 +1,41 @@
+# Private competition config (server credentials)
+config/competition.yaml
+
+# Model weights — download separately, never commit (see README). Total >3 GB.
+*.pth
+*.pt
+*.safetensors
+*.bin
+models/shared/dinov3_vitl16/
+models/shared/sam_hq_vit_l.pth
+models/rgb_models/reference/
+models/termal_models/reference/
+
+# Third-party source (clone CropFormer here, do not vendor)
+third_party/CropFormer/
+
+# Built reference bank + generated outputs
+offline_data/ref_bank.npz
+offline_data/ref_crops/
+offline_data/ref_extract_out/
+logs/
+*_match.jpg
+results.json
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+*.egg-info/
+
+# Datasets / bulk media
+*.mp4
+*.avi
+data/
+datasets/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

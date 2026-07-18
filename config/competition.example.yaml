@@ -1,0 +1,22 @@
+# Copy this file to  config/competition.yaml  and fill in your own values.
+# competition.yaml is git-ignored (it holds private server credentials).
+# The OFFLINE pipeline (aligner + z_rgb + eval) works WITHOUT this file.
+
+server:
+  base_url: "http://YOUR_SERVER:PORT/"
+  team_name: "YOUR_TEAM_NAME"
+  password:  "YOUR_PASSWORD"
+  session_name: "YOUR_SESSION"
+  timeout_sec: 30
+  retry: 3
+
+session:
+  total_frames: 2250
+  fps: 7.5
+  gt_frames: 450            # first 450 frames have health_status=1 (calibration window)
+  skip_eval_first: 10
+
+paths:
+  models_root: "models"     # models/{modality}_models/
+  reference_dir: "offline_data/reference"
+  log_dir: "logs"

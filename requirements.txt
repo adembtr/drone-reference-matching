@@ -1,0 +1,15 @@
+# Core
+numpy
+opencv-python
+torch                 # match your CUDA version (see pytorch.org)
+transformers>=4.44    # provides the DINOv3 model class
+
+# --- Model backends installed FROM SOURCE (not plain pip) — see README ---
+# HQ-SAM (reference cutout):   pip install segment-anything-hq
+#   https://github.com/SysCV/sam-hq
+# SAM2 (thermal frame seg + streaming tracker):
+#   https://github.com/facebookresearch/sam2   (pip install -e .)
+# CropFormer (RGB frame seg): needs detectron2 + Mask2Former from source
+#   https://github.com/qqlu/Entity  (CropFormer / High-Quality Entity Segmentation)
+#
+# A CUDA GPU is required (all four backbones run on GPU; DINOv3 must run in fp32).
