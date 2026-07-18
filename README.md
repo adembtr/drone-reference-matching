@@ -14,6 +14,41 @@ Built for the reference-object task of a TEKNOFEST 2026 (aviation AI) project.
 
 ---
 
+## See it work
+
+**1. Reference cutout (HQ-SAM).** The main object is isolated in each reference
+photo — background removed — so the embedding captures identity, not surroundings.
+Here a thermal reference (a combine harvester), original → cutout:
+
+<table>
+<tr>
+<td width="50%"><img src="assets/1_ref_original.jpg" width="100%"></td>
+<td width="50%"><img src="assets/1_ref_cutout.png" width="100%"></td>
+</tr>
+<tr>
+<td align="center"><em>reference photo</em></td>
+<td align="center"><em>HQ-SAM cutout</em></td>
+</tr>
+</table>
+
+**2. RGB frame segmentation (CropFormer).** Every entity in the frame gets its own
+clean mask:
+
+![CropFormer masks on an RGB aerial frame](assets/2_cropformer_rgb.jpg)
+
+**3. Thermal frame segmentation (SAM2).** Shape-driven masks that hold up on
+low-texture thermal:
+
+![SAM2 masks on a thermal aerial frame](assets/3_sam2_thermal.jpg)
+
+**4. Match.** Each segment is embedded with DINOv3 and compared to the active
+references; anything above threshold is a detection. Here the landing markers are
+found — **UAP at 0.97**, **UAI at 0.90** cosine:
+
+![Matched objects UAP and UAI on the aerial frame](assets/4_match_result.jpg)
+
+---
+
 ## Pipeline
 
 ```
