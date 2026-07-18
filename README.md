@@ -31,21 +31,17 @@ Here a thermal reference (a combine harvester), original → cutout:
 </tr>
 </table>
 
-**2. RGB frame segmentation (CropFormer).** Every entity in the frame gets its own
-clean mask:
+**2. Frame segmentation — SAM2 vs CropFormer.** Every object in the frame gets its
+own mask. The same aerial frame through both segmenters shows why RGB sessions use
+CropFormer (cleaner whole-entity masks) and thermal sessions use SAM2:
 
-![CropFormer masks on an RGB aerial frame](assets/2_cropformer_rgb.jpg)
+![SAM2 and CropFormer segmentation compared on the same aerial frame](assets/2_segmenters.jpg)
 
-**3. Thermal frame segmentation (SAM2).** Shape-driven masks that hold up on
-low-texture thermal:
+**3. Match.** Each segment is embedded with DINOv3 and compared to the active
+references; anything above threshold is a detection (labelled by reference id and
+cosine score):
 
-![SAM2 masks on a thermal aerial frame](assets/3_sam2_thermal.jpg)
-
-**4. Match.** Each segment is embedded with DINOv3 and compared to the active
-references; anything above threshold is a detection. Here the landing markers are
-found — **UAP at 0.97**, **UAI at 0.90** cosine:
-
-![Matched objects UAP and UAI on the aerial frame](assets/4_match_result.jpg)
+![Reference objects matched in an aerial frame](assets/3_match.jpg)
 
 ---
 
